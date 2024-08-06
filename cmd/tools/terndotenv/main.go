@@ -31,6 +31,18 @@ func main() {
 				},
 			},
 		},
+		{
+			Name:     "new",
+			HelpName: "new",
+			Action:   workers.CreateMigration,
+			Usage:    "Create a new migration",
+			Flags: []cli.Flag{
+				&cli.StringFlag{
+					Name:  "name",
+					Usage: "Migration name",
+				},
+			},
+		},
 	}
 	err := app.Run(os.Args)
 	if err != nil {

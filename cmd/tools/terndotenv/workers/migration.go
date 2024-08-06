@@ -30,7 +30,6 @@ func migrateToLatest() error {
 		"--config",
 		"./internal/store/pgstore/migrations/tern.conf",
 	)
-	fmt.Println(cmd.String())
 	return cmd.Run()
 }
 
@@ -40,6 +39,18 @@ func migrateToVersion(version string) error {
 		"migrate",
 		"--destination",
 		version,
+	)
+	return cmd.Run()
+}
+
+func CreateMigration(c *cli.Context) error {
+	migrationName := c.String("name")
+	cmd := exec.Command(
+		"tern",
+		"new",
+		"--migrations",
+		"internal/store/pgstore/migrations",
+		migrationName,
 	)
 	fmt.Println(cmd.String())
 	return cmd.Run()
